@@ -12,6 +12,7 @@ export class UserFormComponent implements OnInit {
   count = 0;
   skillsObj = {};
   duplicated = false;
+  isEmpty = false;
 
   remove = '';
 
@@ -34,6 +35,12 @@ export class UserFormComponent implements OnInit {
 
     //removes the warning
     this.duplicated = false;
+    this.isEmpty = false;
+
+    if (this.skill == '') {
+      this.isEmpty = true;
+      return;
+    }
 
     if (this.skills.includes(this.skill)) {
       //sends the warning, and will not add that skill
@@ -47,6 +54,7 @@ export class UserFormComponent implements OnInit {
     this.skillsObj[this.count] = this.skill;
     this.skills.push(this.skillsObj[this.count]);
     this.count++;
+    this.skill = '';
   }
 
   removeSkill(removeSkill: String) {
